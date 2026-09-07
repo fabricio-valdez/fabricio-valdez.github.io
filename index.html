@@ -92,8 +92,12 @@
   .photo-frame{
     border:1.5px dashed var(--rule); background:var(--paper); height:170px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
-    margin-bottom:16px; color:var(--ink-soft);
+    margin-bottom:16px; color:var(--ink-soft); overflow:hidden;
   }
+  .photo-frame.has-photo{border:1px solid var(--rule); padding:0;}
+  .photo-frame.contain{background:var(--ink);}
+  .photo-frame.contain img{object-fit:contain;}
+  .photo-frame img{width:100%; height:100%; object-fit:cover; display:block;}
   .photo-frame svg{width:26px; height:26px; opacity:.6;}
   .photo-frame span{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;}
 
@@ -369,7 +373,7 @@
     <div class="cards">
 
       <div class="card">
-        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="photo-frame has-photo contain"><img src="assets/exo-project-boston.jpg" alt="Fabricio wearing the instrumented knee exoskeleton during motion-capture testing"></div>
         <div class="card-head"><h3>Biomechanics Assessment of a Knee Exoskeleton</h3><span class="card-tag">2024–26</span></div>
         <div class="org">Neuromotor Recovery Laboratory, Boston University — Boston, MA, US</div>
         <ul>
@@ -381,21 +385,24 @@
       </div>
 
       <div class="card">
-        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
-        <div class="card-head"><h3>Intuitive Prosthetic Pinky Finger</h3><span class="card-tag">Report pending</span></div>
-        <div class="org">Details coming soon</div>
+        <div class="photo-frame has-photo"><img src="assets/pinky-finger-project.jpg" alt="Fabricio wearing the prosthetic pinky finger prototype next to the project poster"></div>
+        <div class="card-head"><h3>Intuitive Prosthetic Pinky Finger</h3><span class="card-tag">2025</span></div>
+        <div class="org">ME6250 Wearable Robotics — Northeastern University</div>
         <ul>
-          <li>Full write-up on the way — send me the project report and I'll fill this in with real detail and photos.</li>
+          <li>Designed a low-cost prosthetic pinky finger with independent MCP and DIP joint actuation, driven by two HPS-2518 servos through a pulley-cable transmission, plus a passive spring for return-to-rest.</li>
+          <li>Ran a force analysis relating fingertip force to motor torque (4.84 kg·cm and 3.85 kg·cm across the two pulleys) to size the actuators; modeled and stress-tested the TPU/PLA components in Onshape and SolidWorks.</li>
+          <li>Iterated the control input from EMG electrodes — unreliable due to dual power needs and electrode degradation — to a pressure sensor strip on the ring finger, improving accuracy and repeatability while cutting system complexity.</li>
+          <li>Validated with 8 test subjects (ages 19–26); the fix scored well on learnability and comfort, with responsiveness and natural movement flagged as the next areas to improve.</li>
         </ul>
-        <div class="toolrow"><span>Prosthetics</span></div>
+        <div class="toolrow"><span>Prosthetics</span><span>Mechanism design</span><span>Sensors &amp; controls</span><span>Onshape</span></div>
       </div>
 
       <div class="card">
-        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="photo-frame has-photo"><img src="assets/assistive-wheels-project.jpg" alt="Fabricio with the quadruped robot fitted with wheeled feet"></div>
         <div class="card-head"><h3>Assistive Wheels for a Quadruped Robot</h3><span class="card-tag">Report pending</span></div>
-        <div class="org">Details coming soon</div>
+        <div class="org">Université Laval — Quebec, Canada</div>
         <ul>
-          <li>Full write-up on the way — send me the project report and I'll fill this in with real detail and photos.</li>
+          <li>Full write-up on the way — send me the project report and I'll fill this in with real technical detail.</li>
         </ul>
         <div class="toolrow"><span>Legged robotics</span></div>
       </div>
@@ -567,30 +574,4 @@
         <div class="who"><strong>Michael P. Manning</strong>Engineering Leadership Professor of the Practice, Gordon Institute of Engineering Leadership, Northeastern University</div>
       </div>
       <div class="note">
-        <p>Every device in my lab became a source of extreme curiosity for Fabricio, who worked through each one from the biological, electrical, and mechanical angles — and did it with the communication skills to explain any of it clearly to a lay audience.</p>
-        <div class="who"><strong>Jorge Soliz, PhD</strong>Professor, Université Laval / IUCPQ Research Center</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER / CONTACT -->
-  <footer id="contact">
-    <div class="foot-grid">
-      <div class="foot-cta">
-        <h3>Building something in wearable robotics or assistive tech?</h3>
-        <div class="foot-links">
-          <a href="mailto:fabriciovaldezor@gmail.com">fabriciovaldezor@gmail.com</a>
-          <a href="https://www.linkedin.com/in/fa-valdez/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
-      <div class="fmark">
-        SHEET 10 OF 10 — CONTACT<br>
-        DRAWN BY: F. VALDEZ ORDOÑEZ<br>
-        LOCATION: GIJÓN, SPAIN
-      </div>
-    </div>
-  </footer>
-
-</div>
-</body>
-</html>
+        <p>Every device in my lab became a source of extreme curiosity for Fabricio, who worked through each one from the biological, electrical, and mechanical angles — and did it with the communication skills to expla
