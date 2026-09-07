@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabricio Valdez Ordoñez — Mechatronics &amp; Robotics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDF1F4;
+    --paper-line:#C9D5E0;
+    --ink:#152238;
+    --ink-soft:#44536C;
+    --copper:#B4661F;
+    --copper-soft:#D98A3D;
+    --white:#FBFCFD;
+    --rule:#B9C6D2;
+    --mono:'IBM Plex Mono', monospace;
+    --sans:'IBM Plex Sans', sans-serif;
+    --cond:'IBM Plex Sans Condensed', sans-serif;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0/44px 44px,
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px) 0 0/44px 44px,
+      var(--paper);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    opacity:0.98;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+  a{color:var(--copper); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--copper); outline-offset:2px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--copper); margin:0 0 10px;
+  }
+  h1,h2,h3{font-family:var(--cond); font-weight:700; margin:0; color:var(--ink);}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+  .tick-rule{position:relative; height:1px; background:var(--rule); margin:56px 0;}
+  .tick-rule::before,.tick-rule::after{
+    content:''; position:absolute; top:-4px; width:1px; height:9px; background:var(--ink-soft);
+  }
+  .tick-rule::before{left:0;} .tick-rule::after{right:0;}
+
+  /* ---------- HERO BANNER (full-bleed image + overlay nav) ---------- */
+  .hero-banner{
+    position:relative; width:100%; min-height:300px;
+    display:flex; align-items:center;
+    background-image:
+      linear-gradient(rgba(10,16,30,.58), rgba(10,16,30,.72)),
+      url('header-bg.jpg'),
+      radial-gradient(circle at 30% 30%, #223454, #10192c 70%);
+    background-size:cover, cover, cover;
+    background-position:center, center, center;
+  }
+  .hero-banner-inner{width:100%; max-width:var(--max); margin:0 auto; padding:64px 28px 40px;}
+  .hero-name{
+    font-family:var(--cond); font-weight:700; color:var(--white);
+    font-size:clamp(34px,6vw,60px); line-height:1.02; letter-spacing:-0.01em; margin:0;
+  }
+  .hero-role{
+    font-family:var(--mono); color:var(--copper-soft); text-transform:uppercase;
+    letter-spacing:.08em; font-size:clamp(12px,1.6vw,15px); margin:12px 0 0;
+  }
+  .hero-nav{
+    position:absolute; top:22px; right:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:flex-end;
+    max-width:60%;
+  }
+  .hero-nav a{
+    font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+    color:rgba(251,252,253,.85);
+  }
+  .hero-nav a:hover{color:var(--copper-soft); text-decoration:none;}
+  @media (max-width:720px){
+    .hero-nav{position:static; margin-bottom:22px; max-width:100%; justify-content:flex-start;}
+    .hero-banner-inner{padding-top:26px;}
+  }
+
+  /* ---------- PHOTO PLACEHOLDERS ---------- */
+  .photo-frame{
+    border:1.5px dashed var(--rule); background:var(--paper); height:170px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    margin-bottom:16px; color:var(--ink-soft);
+  }
+  .photo-frame svg{width:26px; height:26px; opacity:.6;}
+  .photo-frame span{font-family:var(--mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.06em;}
+
+  /* ---------- LOGO SLOTS (Recognition) ---------- */
+  .logo-slot{
+    width:44px; height:44px; border:1.5px dashed var(--rule); border-radius:6px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:12px; background:var(--paper);
+  }
+  .logo-slot img{max-width:32px; max-height:32px; object-fit:contain;}
+  .logo-slot span{font-family:var(--mono); font-size:8.5px; color:var(--ink-soft);}
+
+  /* ---------- SUB-HERO ---------- */
+  .hero{padding:40px 0 30px;}
+  .hero .eyebrow{font-size:12.5px;}
+  .hero .dek{
+    font-family:var(--sans); font-size:17px; line-height:1.65; color:var(--ink-soft);
+    max-width:640px; margin:22px 0 0;
+  }
+  .titleblock{
+    margin-top:44px; border:1px solid var(--ink); background:var(--white);
+  }
+  .titleblock-row{display:grid; grid-template-columns:1fr 1fr 1fr 1fr;}
+  @media (max-width:720px){ .titleblock-row{grid-template-columns:1fr 1fr;} }
+  .titleblock-cell{
+    padding:12px 16px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  }
+  .titleblock-cell:last-child{border-right:none;}
+  .titleblock-cell .lbl{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:5px;}
+  .titleblock-cell .val{font-family:var(--sans); font-size:13.5px; font-weight:600;}
+  .hero-cta{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;
+    padding:12px 20px; border:1.5px solid var(--ink); color:var(--ink); display:inline-block;
+    transition:all .15s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper); text-decoration:none;}
+  .btn.primary{background:var(--copper); border-color:var(--copper); color:var(--white);}
+  .btn.primary:hover{background:var(--ink); border-color:var(--ink);}
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{padding:20px 0 10px;}
+  .sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:38px;}
+  .sec-num{font-family:var(--mono); font-size:13px; color:var(--copper);}
+  .sec-head h2{font-size:clamp(26px,3.4vw,34px);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr .7fr; gap:50px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{font-size:16px; line-height:1.75; color:var(--ink-soft); margin:0 0 16px;}
+  .spec-list{list-style:none; margin:0; padding:0; font-family:var(--mono); font-size:12.5px;}
+  .spec-list li{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed var(--rule);}
+  .spec-list span:first-child{color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; font-size:11px;}
+  .spec-list span:last-child{font-weight:600; text-align:right;}
+
+  /* ---------- JOURNEY / SCHEMATIC TIMELINE ---------- */
+  .timeline{position:relative; margin-left:8px; padding-left:34px; border-left:2px solid var(--ink);}
+  .tnode{position:relative; padding:0 0 42px 26px;}
+  .tnode:last-child{padding-bottom:6px;}
+  .tnode::before{
+    content:''; position:absolute; left:-45px; top:2px; width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:2.5px solid var(--copper);
+  }
+  .tnode::after{
+    content:''; position:absolute; left:-33px; top:7px; width:24px; height:1px; background:var(--ink-soft);
+  }
+  .tnode .tyear{font-family:var(--mono); font-size:12px; color:var(--copper); letter-spacing:.05em;}
+  .tnode h3{font-size:19px; margin:4px 0 6px;}
+  .tnode p{font-size:14.5px; line-height:1.6; color:var(--ink-soft); margin:0; max-width:600px;}
+
+  /* ---------- WORK / PROJECT CARDS ---------- */
+  .cards{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:800px){.cards{grid-template-columns:1fr;}}
+  .card{
+    border:1px solid var(--ink); background:var(--white); padding:26px; display:flex; flex-direction:column;
+  }
+  .card-head{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; margin-bottom:6px;}
+  .card-head h3{font-size:18.5px; line-height:1.25;}
+  .card-tag{font-family:var(--mono); font-size:10.5px; color:var(--white); background:var(--ink); padding:3px 8px; white-space:nowrap;}
+  .card .org{font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin-bottom:14px;}
+  .card ul{margin:0 0 16px; padding-left:18px; font-size:14px; line-height:1.6; color:var(--ink-soft);}
+  .card ul li{margin-bottom:6px;}
+  .toolrow{display:flex; gap:6px; flex-wrap:wrap; margin-top:auto; padding-top:12px; border-top:1px dashed var(--rule);}
+  .toolrow span{font-family:var(--mono); font-size:10.5px; color:var(--copper); border:1px solid var(--copper); padding:2px 7px;}
+
+  /* ---------- TOOLKIT / BOM TABLE ---------- */
+  .bom{width:100%; border-collapse:collapse; font-family:var(--mono); font-size:13px;}
+  .bom th{
+    text-align:left; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);
+    padding:10px 12px; border-bottom:2px solid var(--ink);
+  }
+  .bom td{padding:12px 12px; border-bottom:1px solid var(--rule);}
+  .bom tr:last-child td{border-bottom:1px solid var(--ink);}
+  .bom td.n{color:var(--copper); width:34px;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:800px){.edu{grid-template-columns:1fr;}}
+  .edu-card{border-left:3px solid var(--copper); padding:4px 0 4px 20px;}
+  .edu-card .tyear{font-family:var(--mono); font-size:12px; color:var(--copper);}
+  .edu-card h3{font-size:19px; margin:5px 0 3px;}
+  .edu-card .school{font-size:14px; color:var(--ink-soft); margin-bottom:10px;}
+  .edu-card p{font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;}
+
+  /* ---------- RECOGNITION / STAMPS ---------- */
+  .stamps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  @media (max-width:800px){.stamps{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.stamps{grid-template-columns:1fr;}}
+  .stamp{
+    border:1px solid var(--rule); padding:18px; position:relative; background:var(--white);
+  }
+  .stamp .seal-icon{
+    width:26px; height:26px; border-radius:50%; border:2px solid var(--copper);
+    display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+  }
+  .stamp .seal-icon svg{width:12px; height:12px;}
+  .stamp .tyear{font-family:var(--mono); font-size:11px; color:var(--ink-soft);}
+  .stamp h4{font-family:var(--cond); font-weight:700; font-size:15px; margin:5px 0 4px; line-height:1.3;}
+  .stamp p{font-size:12.5px; color:var(--ink-soft); margin:0; line-height:1.5;}
+
+  /* ---------- NOTES / TESTIMONIALS ---------- */
+  .notes{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  @media (max-width:800px){.notes{grid-template-columns:1fr;}}
+  .note{border:1px solid var(--rule); background:var(--white); padding:26px; position:relative;}
+  .note::before{content:'"'; position:absolute; top:8px; left:16px; font-family:var(--cond); font-size:46px; color:var(--copper); opacity:.35; line-height:1;}
+  .note p{font-size:15px; line-height:1.65; color:var(--ink); margin:14px 0 16px; position:relative; z-index:1;}
+  .note .who{font-family:var(--mono); font-size:11.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
+  .note .who strong{color:var(--ink); font-family:var(--sans); text-transform:none; letter-spacing:0; font-size:13px; display:block; margin-bottom:2px;}
+
+  /* ---------- SERVICE / LANGUAGES ---------- */
+  .service-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:50px;}
+  @media (max-width:800px){.service-grid{grid-template-columns:1fr;}}
+  .service-grid ul{list-style:none; margin:0; padding:0;}
+  .service-grid li{padding:12px 0; border-bottom:1px solid var(--rule); display:flex; gap:16px;}
+  .service-grid li .tyear{font-family:var(--mono); font-size:11.5px; color:var(--copper); white-space:nowrap; min-width:92px;}
+  .service-grid li div p{margin:2px 0 0; font-size:13.5px; color:var(--ink-soft); line-height:1.5;}
+  .service-grid li div strong{font-size:14.5px;}
+  .langbars{margin-top:0;}
+  .langbar{margin-bottom:18px;}
+  .langbar .lname{display:flex; justify-content:space-between; font-family:var(--mono); font-size:12px; margin-bottom:6px;}
+  .langbar .track{height:6px; background:var(--rule);}
+  .langbar .fill{height:6px; background:var(--copper);}
+
+  /* ---------- FOOTER / TITLE BLOCK ---------- */
+  footer{margin-top:60px; border-top:1px solid var(--ink); padding:36px 0 30px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;}
+  .foot-grid .fmark{font-family:var(--mono); font-size:11px; color:var(--ink-soft); line-height:1.7;}
+  .foot-cta h3{font-size:24px; margin-bottom:14px;}
+  .foot-links{display:flex; gap:18px; font-family:var(--mono); font-size:12.5px;}
+
+  ::selection{background:var(--copper); color:var(--white);}
+</style>
+</head>
+<body>
+
+<div class="hero-banner">
+  <div class="hero-banner-inner">
+    <nav class="hero-nav">
+      <a href="#about">About</a>
+      <a href="#work">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#toolkit">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#recognition">Awards</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <h1 class="hero-name">Fabricio Valdez Ordoñez</h1>
+    <p class="hero-role">MS Electrical and Computer Engineering</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="eyebrow">Mechatronics &amp; Robotics Engineer · Exoskeletons &amp; Assistive Devices</p>
+    <p class="dek">I design the mechanics, electronics, and control systems that let robots and exoskeletons work alongside the human body. I'm currently deepening that focus through the EU4M Erasmus Mundus Master's in Mechatronic Engineering.</p>
+
+    <div class="titleblock">
+      <div class="titleblock-row">
+        <div class="titleblock-cell"><div class="lbl">Based in</div><div class="val">Gijón, Spain</div></div>
+        <div class="titleblock-cell"><div class="lbl">Field</div><div class="val">Mechatronics &amp; Robotics</div></div>
+        <div class="titleblock-cell"><div class="lbl">Status</div><div class="val">EU4M Master's student · open to roles</div></div>
+        <div class="titleblock-cell"><div class="lbl">Languages</div><div class="val">ES · EN · FR · DE</div></div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn primary" href="mailto:fabriciovaldezor@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/fa-valdez/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="#work">See the work</a>
+    </div>
+  </header>
+
+  <div class="tick-rule"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div>
+        <p>I grew up in Bolivia chasing math and physics competitions, which is what first pointed me toward engineering. That path led to a Mechatronics degree, a research year at Université Laval in Quebec designing automation and instrumentation systems for a research lab, and a Fulbright-funded master's at Northeastern University, where I worked on a knee exoskeleton with a neuromotor recovery lab at Boston University.</p>
+        <p>What connects all of it: I like the point where mechanics, electronics, and control systems meet the human body — exoskeletons, prosthetics, and assistive robots most of all. I'm now continuing that focus through the EU4M Erasmus Mundus Master's in Mechatronic Engineering — year one at the Universidad de Oviedo, year two at ENSMM in France — based for now in Gijón, Spain.</p>
+      </div>
+      <ul class="spec-list">
+        <li><span>Now</span><span>EU4M Erasmus Mundus Master's</span></li>
+        <li><span>Prior degree</span><span>MS Electrical &amp; Computer Eng. (Fulbright)</span></li>
+        <li><span>Undergrad</span><span>BS Mechatronics Eng., Bolivia</span></li>
+        <li><span>Core tools</span><span>C++, Python, ROS, MATLAB</span></li>
+        <li><span>CAD / sim</span><span>SolidWorks, Fusion 360, Onshape</span></li>
+        <li><span>Focus</span><span>Exoskeletons &amp; assistive robotics</span></li>
+        <li><span>Languages</span><span>ES (native) · EN (TOEFL 94) · FR (B2) · DE (A1)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- WORK EXPERIENCE -->
+  <section id="work">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Work Experience</h2></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-head"><h3>Research Assistant — Knee Exoskeleton Biomechanics</h3><span class="card-tag">2024–26</span></div>
+        <div class="org">Neuromotor Recovery Laboratory, Boston University — Boston, MA, US</div>
+        <ul>
+          <li>Instrumented a customized assistive knee exoskeleton with motion-capture markers and force sensors to quantify joint kinematics and kinetics during gait.</li>
+          <li>Processed and analyzed biomechanical data (joint angles, torque, ground reaction forces) to evaluate device performance against baseline gait metrics.</li>
+          <li>Coordinated testing protocols with physiotherapists and lab staff to translate clinical requirements into measurable engineering criteria.</li>
+        </ul>
+        <div class="toolrow"><span>Biomechanics</span><span>Motion capture</span><span>Data analysis</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Research &amp; Instrumentation Engineer</h3><span class="card-tag">2022</span></div>
+        <div class="org">Université Laval / IUCPQ Research Center — Quebec, Canada</div>
+        <ul>
+          <li>Designed and built a closed-loop temperature and humidity control system for a neonatal research chamber, including sensor selection, PID tuning, and enclosure design.</li>
+          <li>Calibrated and maintained an oxygraph, an electrophysiology perfusion rig, and a multiplex protein-detection system, resolving signal-noise issues introduced by static charge.</li>
+          <li>Prototyped a bio-photovoltaic energy-harvesting circuit and wrote automation software to manage lab equipment and rodent-housing operations.</li>
+        </ul>
+        <div class="toolrow"><span>Instrumentation</span><span>Control systems</span><span>Embedded systems</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Electronic Maintenance Lead, Micromobility Fleet</h3><span class="card-tag">2021</span></div>
+        <div class="org">Trippy Mobility — Cochabamba, Bolivia</div>
+        <ul>
+          <li>Directed a team of 5 interns performing electronic diagnostics, battery-system checks, and repairs across a fleet of e-scooters and electric motorcycles.</li>
+          <li>Maintained the IoT telemetry dashboard tracking vehicle status, location, and battery health for the public micromobility service.</li>
+        </ul>
+        <div class="toolrow"><span>IoT</span><span>Diagnostics</span><span>Fleet ops</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Exoskeleton Electronics, Undergraduate Research</h3><span class="card-tag">2019</span></div>
+        <div class="org">Universidad Católica Boliviana</div>
+        <ul>
+          <li>Designed and wired the sensor and actuator electronics for an early lower-limb exoskeleton prototype, including motor drivers and control circuitry.</li>
+          <li>Integrated embedded control logic to coordinate actuation with mechanical structure for improved user mobility.</li>
+        </ul>
+        <div class="toolrow"><span>Embedded systems</span><span>Actuation</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Projects</h2></div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="card-head"><h3>Biomechanics Assessment of a Knee Exoskeleton</h3><span class="card-tag">2024–26</span></div>
+        <div class="org">Neuromotor Recovery Laboratory, Boston University — Boston, MA, US</div>
+        <ul>
+          <li>Set up motion-capture and force-plate instrumentation to measure joint angles, torque, and ground reaction forces during exoskeleton-assisted gait.</li>
+          <li>Built the data-processing pipeline to convert raw kinematic/kinetic signals into biomechanical metrics used to score device performance.</li>
+          <li>Defined testing protocols with physiotherapists to align engineering measurements with clinical assessment criteria.</li>
+        </ul>
+        <div class="toolrow"><span>Biomechanics</span><span>Motion capture</span><span>Signal processing</span></div>
+      </div>
+
+      <div class="card">
+        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="card-head"><h3>Intuitive Prosthetic Pinky Finger</h3><span class="card-tag">Report pending</span></div>
+        <div class="org">Details coming soon</div>
+        <ul>
+          <li>Full write-up on the way — send me the project report and I'll fill this in with real detail and photos.</li>
+        </ul>
+        <div class="toolrow"><span>Prosthetics</span></div>
+      </div>
+
+      <div class="card">
+        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="card-head"><h3>Assistive Wheels for a Quadruped Robot</h3><span class="card-tag">Report pending</span></div>
+        <div class="org">Details coming soon</div>
+        <ul>
+          <li>Full write-up on the way — send me the project report and I'll fill this in with real detail and photos.</li>
+        </ul>
+        <div class="toolrow"><span>Legged robotics</span></div>
+      </div>
+
+      <div class="card">
+        <div class="photo-frame"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M21 16l-4.5-4.5a1.5 1.5 0 0 0-2 0L7 19"/></svg><span>Photo pending</span></div>
+        <div class="card-head"><h3>Lower-Limb Exoskeleton Mechanical Design</h3><span class="card-tag">Report pending</span></div>
+        <div class="org">Details coming soon</div>
+        <ul>
+          <li>Full write-up on the way — send me the project report and I'll fill this in with real detail and photos.</li>
+        </ul>
+        <div class="toolrow"><span>Mechanical design</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- TOOLKIT -->
+  <section id="toolkit">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Skills &amp; Tools</h2></div>
+    <table class="bom">
+      <thead><tr><th>No.</th><th>Item</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td class="n">01</td><td>C++, Python</td><td>Programming</td></tr>
+        <tr><td class="n">02</td><td>ROS</td><td>Robotics middleware</td></tr>
+        <tr><td class="n">03</td><td>SolidWorks, Fusion 360, Onshape</td><td>Mechanical CAD</td></tr>
+        <tr><td class="n">04</td><td>Proteus, LTSpice</td><td>Circuit design &amp; simulation</td></tr>
+        <tr><td class="n">05</td><td>MATLAB</td><td>Modeling &amp; data analysis</td></tr>
+        <tr><td class="n">06</td><td>AWS IoT</td><td>Connected devices</td></tr>
+        <tr><td class="n">07</td><td>Cross-disciplinary teamwork</td><td>Working with clinicians &amp; physiotherapists</td></tr>
+        <tr><td class="n">08</td><td>Leading without formal authority</td><td>Team &amp; project leadership</td></tr>
+        <tr><td class="n">09</td><td>Technical communication</td><td>Explaining complex systems simply</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Education</h2></div>
+    <div class="edu">
+      <div class="edu-card">
+        <div class="tyear">2026–2028</div>
+        <h3>MSc Mechatronic Engineering</h3>
+        <div class="school">Erasmus Mundus Joint Master's — EU4M · Year 1: Universidad de Oviedo, Spain · Year 2: ENSMM, Besançon, France</div>
+        <p>Two-year joint degree across the EU4M consortium, integrating mechanics, electronics, and control systems. Second year focused on mechatronics, robotics, and micro-mechatronic systems at ENSMM.</p>
+      </div>
+      <div class="edu-card">
+        <div class="tyear">2024–2026</div>
+        <h3>MS, Electrical &amp; Computer Engineering</h3>
+        <div class="school">Northeastern University, Boston — Fulbright Scholar</div>
+        <p>Includes the Gordon Institute of Engineering Leadership program, with a challenge project on knee exoskeleton biomechanics run alongside Boston University's Neuromotor Recovery Laboratory.</p>
+      </div>
+      <div class="edu-card">
+        <div class="tyear">2017–2022</div>
+        <h3>BS, Mechatronics Engineering</h3>
+        <div class="school">Universidad Católica Boliviana</div>
+        <p>GPA 3.46/86.5% — top of cohort, recognized with the university's Academic Excellence award. Fully funded by the Simón I. Patiño Foundation scholarship.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Recognition</h2></div>
+    <div class="stamps">
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/erasmus-mundus-logo.jpg" alt="Erasmus Mundus logo"></div>
+        <div class="tyear">2026</div>
+        <h4>Erasmus Mundus Scholarship — EU4M</h4>
+        <p>Funds the EU4M Joint Master's in Mechatronic Engineering across European partner universities.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/fulbright-logo.jpg" alt="Fulbright logo"></div>
+        <div class="tyear">2024</div>
+        <h4>Fulbright Scholarship</h4>
+        <p>Funded MS studies in Electrical &amp; Computer Engineering at Northeastern University.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/elap-logo.png" alt="ELAP logo"></div>
+        <div class="tyear">2021</div>
+        <h4>ELAP Scholarship</h4>
+        <p>Government of Canada award funding a research placement at Université Laval.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/ucb-logo.png" alt="Universidad Católica Boliviana logo"></div>
+        <div class="tyear">2019</div>
+        <h4>Academic Excellence Award</h4>
+        <p>Top average of the Mechatronics Engineering cohort, Universidad Católica Boliviana.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/nasa-logo.webp" alt="NASA logo"></div>
+        <div class="tyear">2017</div>
+        <h4>NASA Space Apps Challenge</h4>
+        <p>National winner in Bolivia; represented the country in the international round.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/patino-logo.png" alt="Fundación Patiño logo"></div>
+        <div class="tyear">2017</div>
+        <h4>Simón I. Patiño Scholarship</h4>
+        <p>One of five students nationwide awarded with a fully funded undergraduate degree.</p>
+      </div>
+      <div class="stamp">
+        <div class="logo-slot"><img src="assets/youth-ambassadors-logo.png" alt="Youth Ambassadors logo"></div>
+        <div class="tyear">2015</div>
+        <h4>Youth Ambassadors Scholarship</h4>
+        <p>US Embassy leadership program, Washington DC and Pittsburgh.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Journey</h2></div>
+    <div class="timeline">
+      <div class="tnode">
+        <div class="tyear">2015</div>
+        <h3>Youth Ambassador, US Embassy</h3>
+        <p>Selected as one of Bolivia's representatives for a leadership program with short courses in Washington DC and Pittsburgh — my first real exposure to working across cultures.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2017</div>
+        <h3>Simón I. Patiño Scholarship &amp; NASA Space Apps win</h3>
+        <p>One of five students nationwide awarded a full undergraduate scholarship. The same year, my team took first place in Bolivia at NASA's Space Apps Challenge and went on to compete internationally.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2017–2022</div>
+        <h3>Mechatronics Engineering, Universidad Católica Boliviana</h3>
+        <p>Graduated with the top average in my cohort (GPA 3.46/86.5%). Built an exoskeleton's electronics as an undergraduate researcher and started volunteering with Pequeinnova, teaching electronics to kids in underserved communities.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2021</div>
+        <h3>Led an electronics team at Trippy Mobility</h3>
+        <p>Managed 5 engineering interns maintaining a fleet of e-scooters and motorcycles, and kept the IoT dashboard running for a public micromobility service in Bolivia.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2021–2022</div>
+        <h3>ELAP Scholarship — Research at Université Laval, Quebec</h3>
+        <p>Eleven months building and calibrating lab instruments at the IUCPQ research center, with a focus on automation, control, and sensing systems.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2024–2026</div>
+        <h3>Fulbright Scholar — Northeastern University, Boston</h3>
+        <p>MS in Electrical &amp; Computer Engineering. Through the Gordon Institute of Engineering Leadership, ran a biomechanics project on a customized knee exoskeleton with Boston University's Neuromotor Recovery Laboratory.</p>
+      </div>
+      <div class="tnode">
+        <div class="tyear">2026–2028</div>
+        <h3>MSc Mechatronic Engineering — EU4M Erasmus Mundus</h3>
+        <p>Continuing my focus on sensing, actuation, and control for robotic systems — year one at Universidad de Oviedo, year two at ENSMM in France.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="tick-rule"></div>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="sec-head"><span class="sec-num">08</span><h2>What people say</h2></div>
+    <div class="notes">
+      <div class="note">
+        <p>Fabricio faced early constraints on his exoskeleton project, but instead of waiting, he built relationships with lab leadership and peers and earned the trust needed to move the work forward — leading, as I put it, "from the middle."</p>
+        <div class="who"><strong>Michael P. Manning</strong>Engineering Leadership Professor of the Practice, Gordon Institute of Engineering Leadership, Northeastern University</div>
+      </div>
+      <div class="note">
+        <p>Every device in my lab became a source of extreme curiosity for Fabricio, who worked through each one from the biological, electrical, and mechanical angles — and did it with the communication skills to explain any of it clearly to a lay audience.</p>
+        <div class="who"><strong>Jorge Soliz, PhD</strong>Professor, Université Laval / IUCPQ Research Center</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="foot-grid">
+      <div class="foot-cta">
+        <h3>Building something in wearable robotics or assistive tech?</h3>
+        <div class="foot-links">
+          <a href="mailto:fabriciovaldezor@gmail.com">fabriciovaldezor@gmail.com</a>
+          <a href="https://www.linkedin.com/in/fa-valdez/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="fmark">
+        SHEET 10 OF 10 — CONTACT<br>
+        DRAWN BY: F. VALDEZ ORDOÑEZ<br>
+        LOCATION: GIJÓN, SPAIN
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
