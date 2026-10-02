@@ -59,11 +59,12 @@
     position:relative; width:100%; min-height:300px;
     display:flex; align-items:center;
     background-image:
-      linear-gradient(rgba(10,16,30,.58), rgba(10,16,30,.72)),
+      linear-gradient(rgba(10,16,30,.38), rgba(10,16,30,.56)),
       url('assets/header-bg.jpg'),
       radial-gradient(circle at 30% 30%, #223454, #10192c 70%);
     background-size:cover, cover, cover;
-    background-position:center, center, center;
+    background-position:center, center top, center;
+    border-top:3px solid var(--ink); border-bottom:3px solid var(--ink);
   }
   .hero-banner-inner{width:100%; max-width:var(--max); margin:0 auto; padding:64px 28px 40px;}
   .hero-name{
